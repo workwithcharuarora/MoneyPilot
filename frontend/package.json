@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --watch=false",
+    "test": "node --test scripts/configure-env.test.mjs && ng test --watch=false",
     "prestart": "node scripts/configure-env.mjs",
     "prebuild": "node scripts/configure-env.mjs",
     "pretest": "node scripts/configure-env.mjs"
