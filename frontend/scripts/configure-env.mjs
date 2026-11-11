@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 let local = {};
 try {
   local = Object.fromEntries(
@@ -20,6 +20,7 @@ if (Boolean(url) !== Boolean(key))
 if (url && new URL(url).protocol !== 'https:') throw new Error('Supabase URL must use HTTPS.');
 if (key && !key.startsWith('sb_publishable_'))
   throw new Error('Only a Supabase publishable key is accepted.');
+mkdirSync('src/environments', { recursive: true });
 writeFileSync(
   'src/environments/environment.generated.ts',
   `// Generated public configuration; do not edit.\nexport const environment = ${JSON.stringify({ supabaseUrl: url, supabasePublishableKey: key })} as const;\n`,
